@@ -4,14 +4,14 @@
 #include <cctype>
 #include <iostream>
 
-// Helper: convert input string to uppercase for comparison
+// Used for suggestion matching
 std::string toUpper(const std::string& str) {
     std::string upper = str;
     std::transform(upper.begin(), upper.end(), upper.begin(), ::toupper);
     return upper;
 }
 
-// Suggest command if input was close but incorrect
+// Suggests a valid command
 std::string suggestSimilarCommand(const std::string& input) {
     std::string upperInput = toUpper(input);
     if (upperInput == "START") return "START";
@@ -21,7 +21,7 @@ std::string suggestSimilarCommand(const std::string& input) {
     return "";
 }
 
-// Parses the raw input to determine command type
+// Prints a helpful message
 CommandType parseCommand(const std::string& input) {
     if (input == "START") return CommandType::START;
     if (input == "STOP") return CommandType::STOP;
@@ -38,16 +38,19 @@ CommandType parseCommand(const std::string& input) {
     return CommandType::INVALID;
 }
 
-// Parses full user input into Command struct
+// Parses user input into a Command with type 
 Command parseUserInput(const std::string& input) {
     std::istringstream iss(input);
     std::string commandStr;
     iss >> commandStr;
-    CommandType type = parseCommand(input);  // pass entire string for SET_SPEED match
+
+    CommandType type = parseCommand(input);
     Command cmd{type};
 
     if (type == CommandType::SET_SPEED) {
         iss >> cmd.value;
     }
+
     return cmd;
 }
+

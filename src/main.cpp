@@ -6,10 +6,11 @@
 
 
 int main() {
-    HardwareSimulator hw;
-    SystemState state = SystemState::IDLE;
-    std::string input;
+    HardwareSimulator hw;                          // Simulated hardware interface
+    SystemState state = SystemState::IDLE;         // Initial system state
+    std::string input;                             // Stores user input
 
+    // Welcome screen and command list
     std::cout << "=============================\n";
     std::cout << " Welcome to the Embedded C2 Simulator\n";
     std::cout << "=============================\n";
@@ -21,11 +22,13 @@ int main() {
     std::cout << "  - CTRL+C            : Exit the program\n";
     std::cout << "=============================\n";
 
+    // Main command loop
     while (true) {
         std::cout << "\n> ";
         std::getline(std::cin, input);
         Command cmd = parseUserInput(input);
 
+        // Handle each command based on its type
         switch (cmd.type) {
             case CommandType::START:
                 if (state == SystemState::IDLE) {
