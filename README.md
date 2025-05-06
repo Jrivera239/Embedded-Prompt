@@ -2,7 +2,7 @@
 
 # Embedded Command and Control Simulator
 
-This is a simple, interactive C++ console application that mimics how commands are processed in an embedded command-and-control system — think of it like the brain talking to a motor.
+This is a simple, interactive C++ console application that mimics how commands are processed in an embedded command-and-control system.
 
 ## What It Does
 
